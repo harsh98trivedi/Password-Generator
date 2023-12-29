@@ -240,10 +240,16 @@
 
             // Check if password length is less than 8
             if (length < 5) {
-                lengthWarning.textContent = 'Password length must be at least 8 characters.';
+                lengthWarning.textContent = 'Password length must be at least 5 characters.';
                 strengthIndicator.textContent = '';
                 return;
-            } else {
+            }
+            else if (length > 64) {
+                lengthWarning.textContent = 'We only support 64 character password for now.';
+                strengthIndicator.textContent = '';
+                return;
+            }
+            else {
                 lengthWarning.textContent = '';
             }
 
