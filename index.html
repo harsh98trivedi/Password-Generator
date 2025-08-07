@@ -58,281 +58,101 @@
     gtag('config', 'G-45C37D3GB5');
     </script>
 
-    <style>
-        body {
-            background-color: #f7fafc;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Poppins', sans-serif;
-        }
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
-        .container {
-            width: 100%;
-            max-width: 90vw;
-        }
-
-        .card {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 1.25rem;
-            text-align: center;
-            margin: auto;
-        }
-
-        .button {
-            background-color: #3490dc;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: #2779bd;
-        }
-
-        .button:active {
-            background-color: #0f426b;
-        }
-
-        .generated-password {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            max-width: 75vw;
-        }
-
-        .copy-button {
-            background-color: #38a169;
-            color: #ffffff;
-            border: none;
-            padding: 0.40rem 0.8rem;
-            margin-left: 0.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .copy-button:hover {
-            background-color: #2f855a;
-        }
-
-        .copy-button:active {
-            background-color: #175033;
-        }
-
-        .warning {
-            color: #e53e3e;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .strength-indicator {
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 12px;
-            white-space: nowrap;
-        }
-
-        /* Custom styling for checkboxes */
-        .checkbox-group {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 10px;
-            justify-items: center;
-        }
-
-        .checkbox-group label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 16px;
-            color: #4a5568;
-        }
-
-        .checkbox-group input {
-            appearance: none;
-            margin: auto;
-            position: relative;
-            width: 1rem;
-            height: 1rem;
-            border: 2px solid #3490dc;
-            border-radius: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-right: 0.5rem;
-        }
-
-        .checkbox-group input:checked {
-            background-color: #3490dc;
-        }
-
-        .checkbox-group input:focus {
-            outline: none;
-        }
-    </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-gray-100 grid place-content-center min-h-screen text-center sm:px-3 md:px-none">
-    <a href="https://harsh98trivedi.github.io/Password-Generator"><img src="favicon.png" alt="Password Generator"
-            class="mx-auto w-36 h-36 my-5 shadow-lg rounded-full" /></a>
+<body class="bg-gray-50 min-h-screen flex flex-col items-center justify-center px-3 sm:px-6 py-6">
 
-    <div class="container">
-        <div class="card">
-            <h2 class="text-2xl font-semibold mb-4">Password Generator</h2>
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="passwordLength">Password Length</label>
-                <input
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="passwordLength" type="number" min="5" value="15" max="64">
-                <p class="warning" id="passwordLengthWarning"></p>
-            </div>
-            <div class="mb-4 checkbox-group">
-                <label>
-                    <input type="checkbox" id="uppercase" class="form-checkbox" checked>
-                    Uppercase
-                </label>
-                <label>
-                    <input type="checkbox" id="lowercase" class="form-checkbox" checked>
-                    Lowercase
-                </label>
-                <label>
-                    <input type="checkbox" id="numbers" class="form-checkbox" checked>
-                    Numbers
-                </label>
-                <label>
-                    <input type="checkbox" id="symbols" class="form-checkbox" checked>
-                    Symbols
-                </label>
-            </div>
-            <div class="mb-5">
-                <label class="block text-gray-700 text-sm font-bold mb-2">Generated Password</label>
-                <div class="generated-password">
-                    <input
-                        class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline flex-1"
-                        id="generatedPassword" readonly>
-                    <button onclick="copyToClipboard()" class="copy-button">
-                        <i class="far fa-copy"></i></button>
-                    <div class="strength-indicator" id="passwordStrength"></div>
-                </div>
-            </div>
-            <button onclick="generatePassword()" class="button w-full my-3.5">Generate Password</button>
-        </div>
-        <p class="mx-auto my-5">Made with <i class="fa-solid fa-heart text-red-600"></i> by <a
-                href="https://htlink.netlify.app/" target="_blank"><strong class="underline text-blue-600">Harsh
-                    Trivedi</strong></a></p>
+  <main
+    class="w-full max-w-screen-sm bg-white rounded-3xl shadow-2xl p-5 sm:p-8 md:p-10 flex flex-col gap-6 sm:gap-8 md:gap-10"
+    role="main" aria-label="Password generator application">
+    <!-- Header -->
+    <header class="text-center">
+      <img src="favicon.png" alt="Password Generator Logo" class="mx-auto w-16 h-16 sm:w-20 sm:h-20 rounded-full shadow-md mb-3" />
+      <h1 class="text-2xl sm:text-3xl font-extrabold text-indigo-700 leading-tight">
+        Password Generator
+      </h1>
+      <p class="mt-1 text-gray-600 text-xs sm:text-sm md:text-base max-w-[20rem] mx-auto">
+        Generate strong, secure passwords with ease.
+      </p>
+    </header>
+
+    <!-- Password length input -->
+    <div>
+      <label for="passwordLength" class="block text-gray-800 font-semibold mb-1 text-sm sm:text-base">Password Length</label>
+      <input type="number" id="passwordLength" name="passwordLength" min="5" max="64" value="15"
+        class="w-full rounded-lg border border-gray-300 px-3 py-2 sm:px-4 sm:py-2 shadow-sm placeholder-gray-400 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+        aria-describedby="passwordLengthWarning" aria-invalid="false" />
+      <p id="passwordLengthWarning" class="mt-1 text-red-600 text-xs sm:text-sm min-h-[1em]" role="alert"
+        aria-live="assertive"></p>
     </div>
 
-    <script>
-        function generatePassword() {
-            const lengthInput = document.getElementById('passwordLength');
-            const lengthWarning = document.getElementById('passwordLengthWarning');
-            const strengthIndicator = document.getElementById('passwordStrength');
+    <!-- Character options -->
+    <fieldset class="border border-gray-200 rounded-lg p-3 sm:p-4" aria-labelledby="charOptionsLabel">
+      <legend id="charOptionsLabel" class="text-gray-800 font-semibold mb-2 text-sm sm:text-base px-1">
+        Choose Character Types
+      </legend>
+      <div
+        class="checkbox-group grid grid-cols-2 gap-5 sm:gap-4 text-gray-700 text-xs sm:text-sm md:text-base leading-none select-none">
 
-            const length = lengthInput.value;
-            const uppercase = document.getElementById('uppercase').checked;
-            const lowercase = document.getElementById('lowercase').checked;
-            const numbers = document.getElementById('numbers').checked;
-            const symbols = document.getElementById('symbols').checked;
+        <label class="flex items-center space-x-2 cursor-pointer" for="uppercase">
+          <input type="checkbox" id="uppercase" name="uppercase" checked />
+          <span class="checkmark" aria-hidden="true">
+          </span>
+          <span>Uppercase</span>
+        </label>
+        <label class="flex items-center space-x-2 cursor-pointer" for="lowercase">
+          <input type="checkbox" id="lowercase" name="lowercase" checked />
+          <span class="checkmark" aria-hidden="true">
+          </span>
+          <span>Lowercase</span>
+        </label>
+        <label class="flex items-center space-x-2 cursor-pointer" for="numbers">
+          <input type="checkbox" id="numbers" name="numbers" checked />
+          <span class="checkmark" aria-hidden="true">
+          </span>
+          <span>Numbers</span>
+        </label>
+        <label class="flex items-center space-x-2 cursor-pointer" for="symbols">
+          <input type="checkbox" id="symbols" name="symbols" checked />
+          <span class="checkmark" aria-hidden="true">
+          </span>
+          <span>Symbols</span>
+        </label>
+      </div>
+    </fieldset>
 
-            // Check if password length is less than 8
-            if (length < 5) {
-                lengthWarning.textContent = 'Password length must be at least 5 characters.';
-                strengthIndicator.textContent = '';
-                return;
-            } else if (length > 64) {
-                lengthWarning.textContent = 'We only support 64 character password for now.';
-                strengthIndicator.textContent = '';
-                return;
-            } else {
-                lengthWarning.textContent = '';
-            }
+    <!-- Generated password and copy button -->
+    <div>
+      <label for="generatedPassword" class="block text-gray-800 font-semibold mb-1 text-sm sm:text-base">Generated Password</label>
+      <div class="flex gap-2 sm:gap-3 items-center">
+        <input type="text" id="generatedPassword" name="generatedPassword" readonly
+          class="flex-grow rounded-lg border border-gray-300 px-3 py-2 sm:px-4 sm:py-2 shadow-inner font-mono text-base sm:text-lg tracking-wide focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+          aria-live="polite" aria-atomic="true" aria-relevant="all" />
+        <button id="copyBtn" type="button" aria-label="Copy password to clipboard"
+          class="flex items-center justify-center bg-teal-600 hover:bg-teal-700 focus:bg-teal-700 focus:outline-none text-white p-2 sm:p-3 rounded-lg shadow-md transition max-h-12 min-w-[2.8rem] select-none">
+          <i class="far fa-copy text-lg sm:text-xl" aria-hidden="true"></i>
+        </button>
+      </div>
+      <p id="passwordStrength" class="text-center mt-1 sm:mt-2 min-h-[1.5rem] grid" aria-live="polite" aria-atomic="true"></p>
+    </div>
 
-            const charset = generateCharset(uppercase, lowercase, numbers, symbols);
-            const password = generateRandomPassword(length, charset);
+    <!-- Generate Button -->
+    <button id="generateBtn" type="button"
+      class="w-full bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 text-white font-bold py-3 rounded-xl shadow-lg transition focus:outline-none text-sm sm:text-base md:text-lg">
+      Generate Password
+    </button>
 
-            document.getElementById('generatedPassword').value = password;
-
-            // Set password strength indicator
-            // Set password strength indicator
-            strengthIndicator.innerHTML = `Password Strength: ${getPasswordStrength(password)}`;
-            animateStrengthIndicator();
-        }
-
-        function generateCharset(uppercase, lowercase, numbers, symbols) {
-            let charset = '';
-
-            if (uppercase) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            if (lowercase) charset += 'abcdefghijklmnopqrstuvwxyz';
-            if (numbers) charset += '0123456789';
-            if (symbols) charset += '!@#$₹%^&*()_-+=<>?';
-
-            if (charset.length === 0) {
-                console.log('Error: No character set selected.');
-                return '';
-            }
-
-            const shuffledCharset = charset.split('').sort(() => Math.random() - 0.5).join('');
-            return shuffledCharset;
-        }
-
-
-        function generateRandomPassword(length, charset) {
-            let password = '';
-            const charsetLength = charset.length;
-
-            for (let i = 0; i < length; i++) {
-                const randomIndex = Math.floor(Math.random() * charsetLength);
-                password += charset.charAt(randomIndex);
-            }
-
-            return password;
-        }
-
-        function getPasswordStrength(password) {
-            const hasUppercase = /[A-Z]/.test(password);
-            const hasLowercase = /[a-z]/.test(password);
-            const hasNumbers = /\d/.test(password);
-            const hasSymbols = /[!@#$%^&*()_\-+=<>?]/.test(password); // escaped the hyphen
-            const passwordLength = password.length;
-
-            if (hasUppercase && hasLowercase && hasNumbers && hasSymbols && passwordLength >= 18) {
-                return '<span style="color: #5bde98;">Super Strong 😎</span>';
-            } else if (hasUppercase && hasLowercase && hasNumbers && passwordLength >= 14) {
-                return '<span style="color: #38a169;">Strong 😃</span>';
-            } else if (hasNumbers && hasUppercase && hasLowercase && passwordLength >= 10) {
-                return '<span style="color: #ecc94b;">Moderate 😐</span>';
-            } else if ((hasNumbers || hasUppercase || hasLowercase) && passwordLength >= 6) {
-                return '<span style="color: #e53e3e;">Weak 😟</span>';
-            } else {
-                return '<span style="color: #b30000;">Very Weak 😱</span>';
-            }
-        }
-
-        function copyToClipboard() {
-            const generatedPassword = document.getElementById('generatedPassword');
-            generatedPassword.select();
-            document.execCommand('copy');
-        }
-
-        // Initialize twemoji
-        twemoji.parse(document.body);
-    </script>
+    <!-- Footer -->
+    <footer class="mt-8 sm:mt-10 text-center text-gray-500 text-xs sm:text-sm select-none px-2">
+      Made with <i class="fa-solid fa-heart text-red-600" aria-hidden="true"></i> by <a href="https://htlink.netlify.app/"
+        target="_blank" rel="noopener noreferrer" class="text-indigo-600 underline font-semibold">Harsh Trivedi</a>
+    </footer>
+  </main>
+    <script src="script.js"></script>
 </body>
 
-
 </html>
-
-
